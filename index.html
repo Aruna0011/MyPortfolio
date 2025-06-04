@@ -13,20 +13,20 @@
 <body>
     <div id="header">
         <div class="container">
+            <div style="display: flex; justify-content: flex-end; align-items: center; padding: 18px 0;">
+                <img src="images/sun.png" id="icon" alt="Toggle dark mode">
+            </div>
             <nav>
                 <div class="logo">
                     <span style="color:#ff1e00 ;">P</span>ortfolio
                 </div>
                 <ul id="sidemenu">
-                    <li><a href="#header">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <!-- <li><a href="#services">Services</a></li> -->
-                    <!-- <li><a href="#portfolio">portfolio</a></li> -->
-                    <li><a href="#contact">Contact me</a></li>
-                    <i class="fas fa-times" onclick="closemenu()"></i>
+                    <li><a href="#header" onclick="closemenu()">Home</a></li>
+                    <li><a href="#about" onclick="closemenu()">About</a></li>
+                    <li><a href="#contact" onclick="closemenu()">Contact me</a></li>
+                    <i class="fas fa-times" aria-label="Close menu" onclick="closemenu()"></i>
                 </ul>
-                <img src="images/sun.png" id="icon">
-                <i class="fas fa-bars" onclick="openmenu()"></i>
+                <i class="fas fa-bars" aria-label="Open menu" onclick="openmenu()"></i>
             </nav>
 
             <div class="header-text">
@@ -192,10 +192,19 @@
 
         function openmenu() {
             sidemenu.style.right = "0";
+            document.body.classList.add('menu-open');
         }
         function closemenu() {
             sidemenu.style.right = "-200px";
+            document.body.classList.remove('menu-open');
         }
+        // Close menu when a nav link is clicked (on mobile)
+        var navLinks = sidemenu.querySelectorAll('a');
+        navLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 600) closemenu();
+            });
+        });
     </script>
  <script>
   const scriptURL = 'https://script.google.com/macros/s/AKfycbzqt_VHUClEwK7PnCvsfhdOt5xDHuIGffuPzh78EtJXzta4-v2aF_A4oT9IfGokvl7HmQ/exec'
@@ -215,6 +224,13 @@
       .catch(error => console.error('Error!', error.message))
   })
 </script>
+    <style>
+        /* Prevent horizontal scroll on mobile */
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+    </style>
 </body>
 
 </html>

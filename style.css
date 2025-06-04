@@ -28,29 +28,31 @@ body {
     color: var(--primary-color);
 }
 .logo {
-    font-size: 2.5em;
-    width: 8.75rem;
+    font-size: 2.2em;
+    width: auto;
     cursor: pointer;
     font-family: MORGANITE;
     font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.18);
+    letter-spacing: 2px;
+    padding-left: 8px;
+    transition: color 0.3s;
 }
-
-nav {
-    width: 84%;
-    margin: auto;
-    padding: 20px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 20px 40px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.logo span {
+    font-size: 1.2em;
 }
-
+nav, #sidemenu, nav ul, nav ul li, nav .fas, nav .logo, .fa-bars, .fa-times {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    position: absolute !important;
+    pointer-events: none !important;
+}
+nav:hover, nav:focus-within {
+    background: rgba(30, 30, 30, 0.55);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
 nav ul {
     flex: 1;
     text-align: right;
@@ -67,31 +69,33 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: #ababab;
-    font-size: 1.125rem;
+    color: #e0e0e0;
+    font-size: 1.13rem;
     position: relative;
-    padding: 5px 10px;
-    transition: all 0.3s ease;
+    padding: 7px 16px;
+    border-radius: 8px;
+    transition: all 0.25s;
+}
+
+nav ul li a:hover, nav ul li a:focus, nav ul li a.active {
+    color: #ffc300;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 2px 8px rgba(255,195,0,0.08);
 }
 
 nav ul li a::after {
     content: '';
     width: 0;
-    height: 0.188rem;
+    height: 2px;
     background: #ffc300;
     position: absolute;
     left: 0;
-    bottom: -0.375rem;
+    bottom: -4px;
     transition: 0.4s;
-    border-radius: 0.625rem;
+    border-radius: 10px;
 }
 
-nav ul li a:hover {
-    color: white;
-    transform: translateY(-2px);
-}
-
-nav ul li a:hover::after {
+nav ul li a:hover::after, nav ul li a.active::after {
     width: 100%;
 }
 
@@ -152,20 +156,30 @@ nav ul li a:hover::after {
 }
 
 .about-col-1 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     flex: 0 0 35%;
     position: sticky;
     top: 20px;
 }
 
 .about-col-1 img {
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #ffc300;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    background: #fff;
+    margin: 0 auto;
+    display: block;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .about-col-1 img:hover {
-    transform: translateY(-10px);
+    transform: scale(1.04) translateY(-6px);
+    box-shadow: 0 16px 48px rgba(255,195,0,0.18);
 }
 
 .about-col-2 {
@@ -561,8 +575,17 @@ nav .fas {
 /* ------------css for small screen------------- */
 @media only screen and (max-width:600px) {
     nav {
-        padding: 15px 20px;
-        width: 90%;
+        padding: 10px 0;
+        width: 100%;
+        left: 0;
+        right: 0;
+        margin: 0;
+        border-radius: 0 0 18px 18px;
+        top: 0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    }
+    .container {
+        padding: 10px 2vw;
     }
     
     nav ul {
@@ -619,8 +642,85 @@ nav .fas {
     }
 
     .Copyright {
-        font-size: 14px;
-        padding: 1rem 0;
+        font-size: 12px;
+        padding: 0.7rem 0;
+    }
+
+    .logo {
+        font-size: 1.3em;
+        padding-left: 0;
+    }
+    .header-text {
+        margin: 30px 5% 10px 5%;
+        text-align: center;
+    }
+    .header-text h1, .header-text span {
+        font-size: 1.2em;
+    }
+    .header-text p {
+        font-size: 1em;
+    }
+    #icon {
+        width: 24px;
+    }
+    .about-col-1 img {
+        width: 120px;
+        height: 120px;
+        border-width: 3px;
+    }
+    .project-card, .skill-section {
+        padding: 15px;
+    }
+    .btn.btn2, form input, form textarea {
+        width: 100%;
+        font-size: 1em;
+        padding: 0.75rem 1.5rem;
+    }
+    .btn.btn2 {
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+    .project-header h3 {
+        font-size: 1.1em;
+    }
+    .sub, .sub-title {
+        font-size: 1.5em;
+    }
+    .About-para {
+        font-size: 1em;
+    }
+    .timeline-content h3 {
+        font-size: 1em;
+    }
+    .timeline-content p, .year, .achievement {
+        font-size: 0.95em;
+    }
+    .social-icon a {
+        font-size: 1.3em;
+        margin-right: 0.5em;
+    }
+    /* Ensure nav icons show/hide correctly */
+    nav .fas.fa-bars {
+        display: block;
+    }
+    nav .fas.fa-times {
+        display: none;
+    }
+    body.menu-open nav .fas.fa-bars {
+        display: none;
+    }
+    body.menu-open nav .fas.fa-times {
+        display: block;
+    }
+    nav ul {
+        padding-top: 60px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .about-col-1 img {
+        width: 160px;
+        height: 160px;
     }
 }
 
